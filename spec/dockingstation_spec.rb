@@ -10,4 +10,7 @@ describe DockingStation do
   it "should be able to dock a bike" do
     expect(subject).to respond_to(:dock).with(1).argument
   end
+  it "should be able to know if there is a bike" do
+    expect(subject).to respond_to(:bikes)
+  end
 end
