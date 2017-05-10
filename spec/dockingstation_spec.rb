@@ -6,7 +6,6 @@ describe DockingStation do
   it "releases working bikes" do
     station = DockingStation.new(Bike.new)
     my_bike = station.release_bike
-    p my_bike
     expect(my_bike).to be_working
   end
   it "should be able to dock a bike" do
