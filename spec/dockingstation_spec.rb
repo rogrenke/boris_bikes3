@@ -24,7 +24,11 @@ describe DockingStation do
     DockingStation::DEFAULT_CAPACITY.times { station.dock(Bike.new) }
     expect{station.dock(Bike.new)}.to raise_error
   end
-  it "should set the capcity to a certain number if we pass it this number as an integer on initialization" do
-    expect(DockingStation.new(DockingStation::DEFAULT_CAPACITY).capacity).to eq DockingStation.new.capacity
+  it "should be instantiated if we pass it an argument" do
+    expect(DockingStation.new(6)).to be_an_instance_of(DockingStation)
+  end
+  it "should set the capacity to a certain number if we pass it this number as an integer on initialization or to equal default value if we pass none" do
+    expect(DockingStation.new(10).capacity).to eq 10
+    expect(DockingStation.new.capacity).to eq DockingStation::DEFAULT_CAPACITY
   end
 end
