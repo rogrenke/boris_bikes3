@@ -11,8 +11,14 @@ class DockingStation
   end
   def release_bike
     fail "no bikes available" if empty?
-    fail "Bike broken" unless @bikes.last.working?
-    @bikes.pop
+    idx = 0
+    while idx < @bikes.length
+      if @bikes[-idx].working?
+        return @bikes.delete_at(-idx)
+      end
+      idx += 1
+    end
+    fail "No working bike available" unless @bikes.last.working?
   end
   def dock(bike)
     fail "station full" if full?
@@ -29,4 +35,3 @@ class DockingStation
 
   private :empty?, :full?
 end
-

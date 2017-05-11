@@ -35,12 +35,18 @@ describe DockingStation do
   it "should raise an error when the user wants to release a bike and the bike is broken" do
     broken_bike = double(:bike, working?: false)
     bike = double(:bike, report_broken: nil)
-    allow(bike).to receive(:report_broken)
-    allow(broken_bike).to receive(:working?).and_return(false)
     station = DockingStation.new
     my_bike = bike
     my_bike.report_broken
     station.dock(my_bike)
     expect{station.release_bike}.to raise_error
+  end
+  it "should release a bike if there is at least one working bike docked to the station" do
+    broken_bike = double(:bike, working?: false)
+    working_bike = double(:bike, working?: true)
+    station = subject
+    station.dock(working_bike)
+    station.dock(broken_bike)
+    expect(station.release_bike).to eq working_bike
   end
 end
