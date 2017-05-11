@@ -29,3 +29,4 @@ class DockingStation
 
   private :empty?, :full?
 end
+
