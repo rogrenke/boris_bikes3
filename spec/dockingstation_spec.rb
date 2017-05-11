@@ -24,7 +24,7 @@ describe DockingStation do
     DockingStation::DEFAULT_CAPACITY.times { station.dock(Bike.new) }
     expect{station.dock(Bike.new)}.to raise_error
   end
-  # it "should check whether a user can set a capacity when creating a new instance of DockingStation" do
-  #   expect(DockingStation).to respond_to(:new).with(1).argument
-  # end
+  it "should set the capcity to a certain number if we pass it this number as an integer on initialization" do
+    expect(DockingStation.new(DockingStation::DEFAULT_CAPACITY).capacity).to eq DockingStation.new.capacity
+  end
 end
